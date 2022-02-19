@@ -1,18 +1,30 @@
 package se.iths.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+@Entity
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotEmpty
+    @NotNull
+    @Size(min = 2)
     private String firstName;
+
+    @NotEmpty
+    @NotNull
+    @Size(min = 2)
     private String lastName;
+
+    @NotEmpty
+    @NotNull
+    @Size(min = 5)
     private String email;
+
     private String phoneNumber;
 
     public Long getId() {
