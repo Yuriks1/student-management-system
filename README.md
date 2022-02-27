@@ -1,15 +1,26 @@
-
 Student-Management-System
 
-CRUD-funktionalitet ska implementeras (Create, Read, Update, Delete)
+Java ENTERPRISE EDITION - Lab 1
 
-Data om en student ska kunna hämtas med efternamn som en Query Parameter
+1.Create Student  @POST
 
-När en ny student ska läggas till, är alla fält obligatoriska utom telefonnummer
+http://localhost:8080/student-management-system/api/v1/students/
 
-Anropen ska returnera meningsfulla Response Codes
+JSON: { "firstName": "StudentsFirstName", "lastName": "StudentsLastName",
+"email": "StudentsEmail@email.test", "phoneNumber": 123456789 }
 
-Skapa minst en egen exception
+2.Get All Student  @GET
 
- Felhantering ska finnas för varje CRUD-metod, och felmeddelande ska returneras i
-JSON-format
+http://localhost:8080/student-management-system/api/v1/students/
+
+3.Update @PUT
+
+http://localhost:8080/student-management-system/api/v1/students/{id}
+
+4.Delete  @DELETE
+
+http://localhost:8080/student-management-system/api/v1/students/{id}
+
+
+
+
