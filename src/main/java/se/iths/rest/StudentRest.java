@@ -1,6 +1,5 @@
 package se.iths.rest;
 
-
 import se.iths.entity.Student;
 import se.iths.service.StudentService;
 import javax.ws.rs.*;
@@ -37,7 +36,6 @@ public class StudentRest {
     public Response getAllStudents() {
         List<Student> foundStudents = studentService.getAllStudents();
         if (foundStudents == null) {
-
             throw new NotFoundException("No Students Found");
         }
         return Response.ok(foundStudents).build();
@@ -46,9 +44,7 @@ public class StudentRest {
     @Path("{id}")
     @PUT
     public Response updateStudent(Student student) {
-
         studentService.updateStudent(student);
-
         if (student == null) {
             throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
                     .entity("No students were found.").type(MediaType.TEXT_PLAIN_TYPE)

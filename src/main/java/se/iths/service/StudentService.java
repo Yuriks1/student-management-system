@@ -13,14 +13,7 @@ public class StudentService {
     @PersistenceContext
     EntityManager entityManager;
 
-
-
-    public void createStudent(Student student) {
-        entityManager.persist(student);
-    }
-    public Student findStudentById(Long id) {
-        return entityManager.find(Student.class, id);
-    }
+    public void createStudent(Student student) {entityManager.persist(student);}
 
     public List<Student> getAllStudents() {
         return entityManager.createQuery("SELECT s from Student s", Student.class).getResultList();
@@ -30,11 +23,9 @@ public class StudentService {
         entityManager.merge(student);
     }
 
-    public void deleteStudent(Long id) {
-        Student foundStudent = entityManager.find(Student.class, id);
-        entityManager.remove(foundStudent);
+    public Student findStudentById(Long id) {
+        return entityManager.find(Student.class, id);
     }
-
 
     public List<Student> getStudentByLastname(String lastName) {
         TypedQuery<Student> query = entityManager.createQuery("SELECT s from Student s WHERE s.lastName = ?1", Student.class);
@@ -42,5 +33,8 @@ public class StudentService {
         return  query.getResultList();
     }
 
-
+    public void deleteStudent(Long id) {
+        Student foundStudent = entityManager.find(Student.class, id);
+        entityManager.remove(foundStudent);
+    }
 }
