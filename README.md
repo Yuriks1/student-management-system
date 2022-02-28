@@ -1,6 +1,6 @@
 Student-Management-System
 
-Java ENTERPRISE EDITION - Lab 1
+Java EE / JAX -RS Labb 1
 
 1.Create Student  @POST
 
