@@ -1,5 +1,6 @@
 package se.iths.entity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -27,12 +28,30 @@ public class Student {
 
     private String phoneNumber;
 
-    public Long getId() {
-        return id;
+    @ManyToOne
+    private Subject subject;
+    public Student(String firstName, String lastName, String email, String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Student() {
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    @JsonbTransient
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
