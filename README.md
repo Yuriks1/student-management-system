@@ -21,6 +21,10 @@ http://localhost:8080/student-management-system/api/v1/students/{id}
 
 http://localhost:8080/student-management-system/api/v1/students/{id}
 
+5.Get All Subject information @GET 
+
+http://localhost:8080/student-management-system/api/v1/subjects/
+
 
 
 

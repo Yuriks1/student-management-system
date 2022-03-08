@@ -1,9 +1,11 @@
 package se.iths.entity;
 
 import javax.persistence.*;
-
-import javax.validation.constraints.*;
-import java.util.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Subject {
@@ -15,16 +17,24 @@ public class Subject {
     @NotNull
     @Size(min = 2)
     private String name;
+
+
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
-    private List <Student> students=new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private List<Teacher> teachers = new ArrayList<>();
+
+    public Subject() {
+    }
+
+    public Subject(String name) {
+        this.name = name;
+    }
 
     public void addStudent(Student student) {
         students.add(student);
         student.setSubject(this);
     }
-
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
-    private List <Teacher> teachers=new ArrayList<>();
 
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
@@ -33,13 +43,6 @@ public class Subject {
 
     public Long getId() {
         return id;
-    }
-
-    public Subject() {
-    }
-
-    public Subject(String name) {
-        this.name = name;
     }
 
     public String getName() {

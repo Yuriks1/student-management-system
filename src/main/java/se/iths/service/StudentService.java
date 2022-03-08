@@ -13,7 +13,9 @@ public class StudentService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void createStudent(Student student) {entityManager.persist(student);}
+    public void createStudent(Student student) {
+        entityManager.persist(student);
+    }
 
     public List<Student> getAllStudents() {
         return entityManager.createQuery("SELECT s from Student s", Student.class).getResultList();
@@ -30,7 +32,7 @@ public class StudentService {
     public List<Student> getStudentByLastname(String lastName) {
         TypedQuery<Student> query = entityManager.createQuery("SELECT s from Student s WHERE s.lastName = ?1", Student.class);
         query.setParameter(1, lastName).getResultList();
-        return  query.getResultList();
+        return query.getResultList();
     }
 
     public void deleteStudent(Long id) {

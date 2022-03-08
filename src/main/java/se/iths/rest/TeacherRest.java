@@ -1,11 +1,14 @@
 package se.iths.rest;
 
 import se.iths.entity.Teacher;
+import se.iths.exception.NotFoundException;
 import se.iths.service.TeacherService;
-
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -24,10 +27,7 @@ public class TeacherRest {
     public Response getAllTeachers() {
         List<Teacher> foundTeachers = teacherService.getAllTeachers();
         if (foundTeachers == null) {
-            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
-                    .entity("No students were found.").type(MediaType.TEXT_PLAIN_TYPE)
-                    .type(MediaType.APPLICATION_JSON)
-                    .build());
+            throw new NotFoundException("No Teachers Found");
         }
         return Response.ok(foundTeachers).build();
     }

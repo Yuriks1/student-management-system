@@ -1,8 +1,8 @@
 package se.iths.rest;
 
 import se.iths.entity.Subject;
+import se.iths.exception.NotFoundException;
 import se.iths.service.SubjectService;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,15 +22,13 @@ public class SubjectRest {
         Subject foundSubject = subjectService.findSubjectById(id);
         return Response.ok(foundSubject).build();
     }
+
     @Path("")
     @GET
     public Response getAllSubject() {
         List<Subject> foundSubjects = subjectService.getAllSubjects();
         if (foundSubjects == null) {
-            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
-                    .entity("No students were found.").type(MediaType.TEXT_PLAIN_TYPE)
-                    .type(MediaType.APPLICATION_JSON)
-                    .build());
+            throw new NotFoundException("No Subjects Found");
         }
         return Response.ok(foundSubjects).build();
     }
